@@ -252,3 +252,30 @@ select name
 select i.name, i.dept_name
 	from instructor as i
 	where hora_ingreso is null;
+
+
+'''subconsultas'''
+select avg (budget)
+	from department
+	where building='Watson';
+    
+select max (budget)
+	from department;
+
+select building, budget
+	from department
+    where budget = (select max (budget) as maximo_presupuesto from department)
+    
+select building, budget
+	from department
+    where budget = (select avg(budget) as promedio_presupuesto from department)
+   
+'''filtrar de otra hpta forma'''
+select dept_name, avg (salary) as avg_salary
+  from instructor
+  group by dept_name
+  having avg (salary) > 42000;
+  
+select dept_name, avg(salary)
+from instructor
+where
